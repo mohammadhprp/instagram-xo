@@ -17,7 +17,7 @@ Instagram XO is a photo and video sharing social networking service
 + Firebase Authentication
   + Email based sign up/in
   + Google Sign in
-  + Faceboo Sign in
+  + Facebook Sign in
 + Cloud Firestore
 + Firebase Messaging
 + Firebase analytics
