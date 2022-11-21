@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Facebook auth cofig  -->
+    <string name="facebook_app_id">1281755885915572</string>
+    <string name="fb_login_protocol_scheme">fb1281755885915572</string>
+    <string name="facebook_client_token">fdde9aea88622b3aa4f3b5ff019b1a88</string>
+    <string name="app_name">image share xo</string>
+</resources>
