@@ -15,10 +15,16 @@ class PostThumbailView extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTapped,
-      child: Image.network(
-        post.thumbnailUrl,
-        fit: BoxFit.cover,
-      ),
+      child: Image.network(post.thumbnailUrl, fit: BoxFit.cover,
+          loadingBuilder: (context, child, loadingProgress) {
+        if (loadingProgress == null) return child;
+        return Center(
+          child: Transform.scale(
+            scale: 0.5,
+            child: const CircularProgressIndicator(),
+          ),
+        );
+      }),
     );
   }
 }

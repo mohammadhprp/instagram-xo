@@ -24,6 +24,25 @@ class PostCommentsView extends HookConsumerWidget {
     required this.postId,
   }) : super(key: key);
 
+  Future<void> _submitCommentWithController(
+    TextEditingController controller,
+    WidgetRef ref,
+  ) async {
+    final userId = ref.read(userIdProvider);
+    if (userId == null) {
+      return;
+    }
+    final isSent = await ref.read(sendCommentProvider.notifier).sendComment(
+          fromUserId: userId,
+          onPostId: postId,
+          comment: controller.text,
+        );
+    if (isSent) {
+      controller.clear();
+      dismissKeyboard();
+    }
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final commentController = useTextEditingController();
@@ -125,6 +144,7 @@ class PostCommentsView extends HookConsumerWidget {
                   padding: const EdgeInsets.only(
                     left: 8.0,
                     right: 8.0,
+                    bottom: 16,
                   ),
                   child: TextField(
                     textInputAction: TextInputAction.send,
@@ -149,24 +169,5 @@ class PostCommentsView extends HookConsumerWidget {
         ),
       ),
     );
-  }
-
-  Future<void> _submitCommentWithController(
-    TextEditingController controller,
-    WidgetRef ref,
-  ) async {
-    final userId = ref.read(userIdProvider);
-    if (userId == null) {
-      return;
-    }
-    final isSent = await ref.read(sendCommentProvider.notifier).sendComment(
-          fromUserId: userId,
-          onPostId: postId,
-          comment: controller.text,
-        );
-    if (isSent) {
-      controller.clear();
-      dismissKeyboard();
-    }
   }
 }

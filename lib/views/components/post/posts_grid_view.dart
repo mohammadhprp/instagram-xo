@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../state/posts/models/post.dart';
+import '../../post_detail/post_detail_view.dart';
 import 'post_thumbail_view.dart';
 
 class PostsGridView extends StatelessWidget {
@@ -24,7 +25,13 @@ class PostsGridView extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         Post post = posts.elementAt(index);
         return PostThumbailView(
-          onTapped: () {},
+          onTapped: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => PostDetailsView(post: post),
+              ),
+            );
+          },
           post: post,
         );
       },
